@@ -17,7 +17,7 @@ public class ErrorFile implements OutputFile {
     @Override
     public void SaveFile(Path path) throws IOException
     {
-        FileWriter errorFile = new FileWriter(path.toString()+"/ErrorFile"+new Date()+".txt");
+        FileWriter errorFile = new FileWriter(path.toString()+"/ErrorFile-"+new Date()+".txt");
         for(String line : errors)
         {
             errorFile.write(line+"\n");

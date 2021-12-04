@@ -6,7 +6,7 @@ import java.io.*;
 import java.nio.*;
 import java.util.Scanner;
 
-public class ShoppingCart {
+public class StockInventorySystem {
 
     private StockDatabase db =  StockDatabase.getInstance();
 

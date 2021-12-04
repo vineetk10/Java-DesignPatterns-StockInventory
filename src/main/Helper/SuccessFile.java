@@ -17,7 +17,7 @@ public class SuccessFile implements OutputFile {
     @Override
     public void SaveFile(Path path) throws IOException
     {
-        FileWriter successFile = new FileWriter(path.toString()+"/successFile"+new Date()+".txt");
+        FileWriter successFile = new FileWriter(path.toString()+"/successFile-"+new Date()+".txt");
         for(String line : successMessage)
         {
             successFile.write(line+"\n");
