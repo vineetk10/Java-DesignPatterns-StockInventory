@@ -19,3 +19,5 @@
 
 # Class Diagram
 
+
+![StockInventoryClassDiagram](https://user-images.githubusercontent.com/26499781/144730549-75877e5c-89cb-4343-829a-e1028eb6a86b.png)
