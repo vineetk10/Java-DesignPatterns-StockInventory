@@ -19,16 +19,21 @@ public class StockInventorySystem {
         StockController stockController = new StockController(stockFilePath);
         stockController.SaveStockInventory();
 
-        System.out.println("Enter the file path of orders");
-        String orderFilePath = sc.nextLine();
-
-        System.out.println("Enter the file path where you want the output");
+        System.out.println("Enter the file path where you want all the output files");
         String outputFilePath = sc.nextLine();
 
-        OrderController orderController = new OrderController(orderFilePath,outputFilePath);
-        orderController.EvaluateOrders();
+        String orderFilePath;
 
+        while(true) {
+            System.out.println("Enter the file path of orders. Type exit if no more input file");
+            orderFilePath = sc.nextLine();
+            if (orderFilePath.equals("exit"))
+                break;
+
+            OrderController orderController = new OrderController(orderFilePath, outputFilePath);
+            orderController.EvaluateOrders();
+        }
+        System.out.println("Thank You!");
     }
-
 
 }

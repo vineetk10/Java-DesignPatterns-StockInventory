@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class OrderController
 {
-    private static ArrayList<String> output = new ArrayList<>();
+    private static ArrayList<String> outputMessage = new ArrayList<>();
     private static StockDatabase db =  StockDatabase.getInstance();
     private FileHandler file;
 
@@ -23,10 +23,10 @@ public class OrderController
     {
         ArrayList<String> fileContent = new ArrayList<>();
         file.ReadFileContents(fileContent);
-        Evaluate(fileContent);
+        GetTotalAmount(fileContent);
     }
 
-    public void Evaluate(ArrayList<String> fileContent)
+    private void GetTotalAmount(ArrayList<String> fileContent)
     {
         boolean isError = false;
         double totalAmount = 0;
@@ -51,21 +51,20 @@ public class OrderController
             else
             {
                 isError = true;
-                GenerateErrorTextFile(item[0],item[1]);
+                GenerateErrorTextFile();
             }
         }
-        System.out.println(totalAmount);
         if(!isError)
          PrintOrder(totalAmount);
     }
 
-    public void PrintOrder(double totalAmount)
+    private void PrintOrder(double totalAmount)
     {
-        output.add("Amt Paid");
-        output.add(Double.toString(totalAmount));
+        outputMessage.add("Amt Paid");
+        outputMessage.add(Double.toString(totalAmount));
         try
         {
-            file.writeOutput(output,false);
+            file.writeOutput(outputMessage,false);
         }
         catch(Exception e)
         {
@@ -73,13 +72,13 @@ public class OrderController
         }
     }
 
-    public void GenerateErrorTextFile(String itemName, String quantity)
+    private void GenerateErrorTextFile()
     {
-        if(output.isEmpty())
+        if(outputMessage.isEmpty())
         {
             try
             {
-                file.writeOutput(output,true);
+                file.writeOutput(outputMessage,true);
             }
             catch(Exception e)
             {
@@ -90,7 +89,7 @@ public class OrderController
         {
             try
             {
-                file.writeOutput(output,true);
+                file.writeOutput(outputMessage,true);
             }
             catch(Exception e)
             {
@@ -100,11 +99,11 @@ public class OrderController
 
     }
 
-    public static boolean IsValidOrder(String itemName, int quantity)
+    private static boolean IsValidOrder(String itemName, int quantity)
     {
         if(!db.getItems().containsKey(itemName))
         {
-            output.add("Stock limit exceeded for item "+itemName+" with quantity "+quantity);
+            outputMessage.add("Stock limit exceeded for item "+itemName+" with quantity "+quantity);
             return false;
         }
 
@@ -112,13 +111,13 @@ public class OrderController
 
         if(quantity>item.getQuantity())
         {
-            output.add("Stock limit exceeded for item "+itemName+" with quantity "+quantity);
+            outputMessage.add("Stock limit exceeded for item "+itemName+" with quantity "+quantity);
             return false;
         }
         Category type = Category.Create(itemName);
         if(type.IsLimitExceeded(quantity))
         {
-            output.add("Category limit exceeded for item "+itemName+" with quantity "+quantity);
+            outputMessage.add("Category limit exceeded for item "+itemName+" with quantity "+quantity);
             return false;
         }
         return true;

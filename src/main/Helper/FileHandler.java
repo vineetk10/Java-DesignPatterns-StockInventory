@@ -25,8 +25,6 @@ public class FileHandler {
             reader = new BufferedReader(new FileReader(path.toFile()));
             String line = reader.readLine();
             while (line != null) {
-                System.out.println(line);
-                // read next line
                 line = reader.readLine();
                 fileContent.add(line);
             }

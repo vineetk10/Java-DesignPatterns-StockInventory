@@ -30,7 +30,7 @@ public class StockController
         SaveStocksInDb(fileContent);
     }
 
-    public static void SaveStocksInDb(ArrayList<String> fileContent)
+    private static void SaveStocksInDb(ArrayList<String> fileContent)
     {
         for(String items : fileContent)
         {
