@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class OrderController
 {
-    private static ArrayList<String> outputMessage = new ArrayList<>();
     private static StockDatabase db =  StockDatabase.getInstance();
     private FileHandler file;
 
@@ -21,12 +20,13 @@ public class OrderController
     }
     public void EvaluateOrders()
     {
+        ArrayList<String> outputMessage = new ArrayList<>();
         ArrayList<String> fileContent = new ArrayList<>();
         file.ReadFileContents(fileContent);
-        GetTotalAmount(fileContent);
+        GetTotalAmount(fileContent,outputMessage);
     }
 
-    private void GetTotalAmount(ArrayList<String> fileContent)
+    private void GetTotalAmount(ArrayList<String> fileContent,ArrayList<String> outputMessage)
     {
         boolean isError = false;
         double totalAmount = 0;
@@ -41,7 +41,7 @@ public class OrderController
             int quantity = Integer.parseInt(item[1]);
             String creditCardNo = item[2];
 
-            if(IsValidOrder(item[0],quantity))
+            if(IsValidOrder(item[0],quantity,outputMessage))
             {
                 Item it = db.getItems().get(itemName);
                 totalAmount += it.getPrice()*quantity;
@@ -51,14 +51,14 @@ public class OrderController
             else
             {
                 isError = true;
-                GenerateErrorTextFile();
+                GenerateErrorTextFile(outputMessage);
             }
         }
         if(!isError)
-         PrintOrder(totalAmount);
+         PrintOrder(totalAmount,outputMessage);
     }
 
-    private void PrintOrder(double totalAmount)
+    private void PrintOrder(double totalAmount,ArrayList<String> outputMessage)
     {
         outputMessage.add("Amt Paid");
         outputMessage.add(Double.toString(totalAmount));
@@ -72,7 +72,7 @@ public class OrderController
         }
     }
 
-    private void GenerateErrorTextFile()
+    private void GenerateErrorTextFile(ArrayList<String> outputMessage)
     {
         if(outputMessage.isEmpty())
         {
@@ -99,7 +99,7 @@ public class OrderController
 
     }
 
-    private static boolean IsValidOrder(String itemName, int quantity)
+    private static boolean IsValidOrder(String itemName, int quantity,ArrayList<String> outputMessage)
     {
         if(!db.getItems().containsKey(itemName))
         {
