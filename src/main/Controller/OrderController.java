@@ -1,5 +1,8 @@
 package Controller;
 
+import ChainOfResponsibility.CategoryLimitExceeded;
+import ChainOfResponsibility.ItemLimitExceededValidation;
+import ChainOfResponsibility.ValidationRequest;
 import Database.StockDatabase;
 import Helper.FileHandler;
 import Iterator.FileRepository;
@@ -108,25 +111,11 @@ public class OrderController
             outputMessage.add("No item in inventory for item "+itemName+" with quantity "+quantity);
             return false;
         }
-        Item item = db.getItems().get(itemName);
-        Category category = item.getCategory();
-        String categoryName = category.getCategoryName();
-        int newQuantity = categoryCount.containsKey(categoryName) ? categoryCount.get(categoryName) + quantity : quantity;
-        categoryCount.put(categoryName, newQuantity);
-        int newItemQuantity = itemCount.containsKey(itemName) ? itemCount.get(itemName) + quantity : quantity;
-        itemCount.put(itemName, newItemQuantity);
+        ItemLimitExceededValidation itemLimitExceededValidation = new ItemLimitExceededValidation();
+        CategoryLimitExceeded categoryLimitExceeded = new CategoryLimitExceeded();
+        itemLimitExceededValidation.setNext(categoryLimitExceeded);
 
-        if(itemCount.get(itemName)>item.getQuantity())
-        {
-            outputMessage.add("Stock limit exceeded for item "+itemName+" with quantity "+quantity);
-            return false;
-        }
-
-        if(category.IsLimitExceeded(newQuantity))
-        {
-            outputMessage.add("Category limit exceeded for category "+categoryName);
-            return false;
-        }
-        return true;
+        ValidationRequest validationRequest = new ValidationRequest(itemName,quantity,outputMessage);
+        return itemLimitExceededValidation.operate(validationRequest,itemCount,categoryCount);
     }
 }
