@@ -23,3 +23,26 @@
 
 
 ![StockInventoryCD](https://user-images.githubusercontent.com/26499781/144785513-b5eb3103-6806-4549-a929-f58b73c5215a.png)
+
+# Screenshots of running code
+
+* Giving dataset file and input file 1 as inputs
+  
+<img width="1440" alt="Screen Shot 2021-12-05 at 8 10 07 PM" src="https://user-images.githubusercontent.com/26499781/144786601-2dd1d804-3b12-4c38-a15d-10211b4b152c.png">
+
+* Output of input file 1
+
+<img width="1440" alt="Screen Shot 2021-12-05 at 8 13 43 PM" src="https://user-images.githubusercontent.com/26499781/144786669-a40f9232-caac-4fac-bfa6-7e6de7b333df.png">
+
+* Output of input file 2
+
+<img width="1440" alt="Screen Shot 2021-12-05 at 8 14 42 PM" src="https://user-images.githubusercontent.com/26499781/144786854-3d30285a-b579-4748-9048-f3a5e254e471.png">
+
+* Output of file 3
+
+<img width="1440" alt="Screen Shot 2021-12-05 at 8 15 19 PM" src="https://user-images.githubusercontent.com/26499781/144786889-ec97d855-b929-4103-bed5-70e1af6cf1d0.png">
+
+* Output of ending the program
+
+<img width="1440" alt="Screen Shot 2021-12-05 at 8 15 57 PM" src="https://user-images.githubusercontent.com/26499781/144786923-eb668e74-2c7b-4441-9b90-3fffb5ea142b.png">
+
