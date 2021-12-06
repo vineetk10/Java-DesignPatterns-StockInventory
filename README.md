@@ -10,11 +10,14 @@
 
 # Design Patterns Used
 
-* Singleton Design Pattern - Class StockDatabase
+
 * Factory Design Pattern - 
   * Abstract Class Category, Class Essentials, Class Item, Class Luxury
   * Interface OutputFile, Class ErrorFile, Class SuccessFile and Clas FileHandler
 * Iterator Pattern - CLass FileRepository, Class Container, Class Iterator, Class OrderController
+* Chain Of Responsibility Pattern - Class CategoryLimitExceededValidation, Class ItemLimitExceededValidation, Class Validation, Class ValidationRequest, Class OrderController
+* Singleton Design Pattern - Class StockDatabase
+
 
 # Class Diagram
 
