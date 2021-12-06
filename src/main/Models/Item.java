@@ -29,4 +29,9 @@ public class Item
     {
         return this.price;
     }
+
+    public Category getCategory()
+    {
+        return this.category;
+    }
 }

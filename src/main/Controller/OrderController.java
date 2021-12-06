@@ -8,11 +8,14 @@ import Models.Category;
 import Models.Item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OrderController
 {
-    private static StockDatabase db =  StockDatabase.getInstance();
+    private StockDatabase db =  StockDatabase.getInstance();
     private FileHandler file;
+    private HashMap<String,Integer> categoryCount = new HashMap<>();
+    private HashMap<String,Integer> itemCount = new HashMap<>();
 
     public OrderController(String filePath, String outputFilePath)
     {
@@ -45,7 +48,6 @@ public class OrderController
             {
                 Item it = db.getItems().get(itemName);
                 totalAmount += it.getPrice()*quantity;
-                it.setQuantity(it.getQuantity()-quantity);
                 db.getCreditCards().add(creditCardNo);
             }
             else
@@ -99,25 +101,30 @@ public class OrderController
 
     }
 
-    private static boolean IsValidOrder(String itemName, int quantity,ArrayList<String> outputMessage)
+    private boolean IsValidOrder(String itemName, int quantity,ArrayList<String> outputMessage)
     {
         if(!db.getItems().containsKey(itemName))
         {
-            outputMessage.add("Stock limit exceeded for item "+itemName+" with quantity "+quantity);
+            outputMessage.add("No item in inventory for item "+itemName+" with quantity "+quantity);
             return false;
         }
-
         Item item = db.getItems().get(itemName);
+        Category category = item.getCategory();
+        String categoryName = category.getCategoryName();
+        int newQuantity = categoryCount.containsKey(categoryName) ? categoryCount.get(categoryName) + quantity : quantity;
+        categoryCount.put(categoryName, newQuantity);
+        int newItemQuantity = itemCount.containsKey(itemName) ? itemCount.get(itemName) + quantity : quantity;
+        itemCount.put(itemName, newItemQuantity);
 
-        if(quantity>item.getQuantity())
+        if(itemCount.get(itemName)>item.getQuantity())
         {
             outputMessage.add("Stock limit exceeded for item "+itemName+" with quantity "+quantity);
             return false;
         }
-        Category type = Category.Create(itemName);
-        if(type.IsLimitExceeded(quantity))
+
+        if(category.IsLimitExceeded(newQuantity))
         {
-            outputMessage.add("Category limit exceeded for item "+itemName+" with quantity "+quantity);
+            outputMessage.add("Category limit exceeded for category "+categoryName);
             return false;
         }
         return true;
