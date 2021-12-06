@@ -30,23 +30,21 @@ SJSU Student ID: 015363530
 
 # Screenshots of running code
 
-* Giving dataset file and input file 1 as inputs
-  
-<img width="1440" alt="Screen Shot 2021-12-05 at 8 10 07 PM" src="https://user-images.githubusercontent.com/26499781/144786601-2dd1d804-3b12-4c38-a15d-10211b4b152c.png">
-
 * Output of input file 1
 
-<img width="1440" alt="Screen Shot 2021-12-05 at 8 13 43 PM" src="https://user-images.githubusercontent.com/26499781/144786669-a40f9232-caac-4fac-bfa6-7e6de7b333df.png">
+<img width="1440" alt="Screen Shot 2021-12-05 at 9 06 24 PM" src="https://user-images.githubusercontent.com/26499781/144790567-66f3b355-f3d4-45a2-9f40-0cc1e85a0b91.png">
+
 
 * Output of input file 2
 
-<img width="1440" alt="Screen Shot 2021-12-05 at 8 14 42 PM" src="https://user-images.githubusercontent.com/26499781/144786854-3d30285a-b579-4748-9048-f3a5e254e471.png">
+<img width="1440" alt="Screen Shot 2021-12-05 at 9 06 58 PM" src="https://user-images.githubusercontent.com/26499781/144790584-89491b91-d840-4972-9678-15dafcc68ec8.png">
 
 * Output of file 3
 
-<img width="1440" alt="Screen Shot 2021-12-05 at 8 15 19 PM" src="https://user-images.githubusercontent.com/26499781/144786889-ec97d855-b929-4103-bed5-70e1af6cf1d0.png">
+<img width="1440" alt="Screen Shot 2021-12-05 at 9 07 23 PM" src="https://user-images.githubusercontent.com/26499781/144790608-df64861f-44ef-466f-9592-caaf5364a19e.png">
+
 
 * Output of ending the program
 
-<img width="1440" alt="Screen Shot 2021-12-05 at 8 15 57 PM" src="https://user-images.githubusercontent.com/26499781/144786923-eb668e74-2c7b-4441-9b90-3fffb5ea142b.png">
+<img width="1440" alt="Screen Shot 2021-12-05 at 9 08 23 PM" src="https://user-images.githubusercontent.com/26499781/144790620-547a8ea0-8b74-4e71-9b17-b9cc07f83689.png">
 
