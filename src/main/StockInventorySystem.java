@@ -1,9 +1,11 @@
 import Controller.OrderController;
 import Controller.StockController;
 import Database.StockDatabase;
+import Helper.CreditCard;
 
 import java.io.*;
 import java.nio.*;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class StockInventorySystem {
@@ -24,15 +26,18 @@ public class StockInventorySystem {
 
         String orderFilePath;
 
+
         while(true) {
             System.out.println("Enter the file path of orders. Type exit if no more input file");
             orderFilePath = sc.nextLine();
             if (orderFilePath.equals("exit"))
                 break;
-
             OrderController orderController = new OrderController(orderFilePath, outputFilePath);
             orderController.EvaluateOrders();
+            CreditCard creditCard = new CreditCard();
+            creditCard.PrintCreditCards();
         }
+
         System.out.println("Thank You!");
     }
 

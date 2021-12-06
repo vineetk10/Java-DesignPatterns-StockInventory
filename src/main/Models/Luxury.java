@@ -2,7 +2,7 @@ package Models;
 
 public class Luxury extends Category{
 
-    private int limit = 4;
+    private int limit = 3;
     private String CategoryName = "Luxury";
     @Override
     public boolean IsLimitExceeded(double quantity)
