@@ -1,9 +1,5 @@
 # StockInventory System
 
-Name: Vineet Karmiani.
-
-SJSU Student ID: 015363530
-
 ## How to run the application
 
 1. On running the applicaton, the user will be prompted to enter the path of stock input file (Dataset.csv).
